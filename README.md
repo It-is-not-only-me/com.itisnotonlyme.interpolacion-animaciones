@@ -1,2 +1,4 @@
-# Unity-Packages
-Este repositorio va a tener todos los packages que vaya creando para crear mis juegos
+# Tweening
+---
+
+Es una libreria que permite "animar" y transladar objetos, de forma programatica y sin utilizar las animaciones internas de unity.
