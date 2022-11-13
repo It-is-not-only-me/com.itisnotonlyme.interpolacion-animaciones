@@ -24,13 +24,20 @@ public class MoverObjeto : MonoBehaviour
         float deltaTiempo = Time.deltaTime;
         _timer = new Timer(_tiempo, deltaTiempo);
 
-        ITween transladar = new Transladar((valorNuevo) => transform.position = valorNuevo, _camino, transform.position, _posicionFinal, _curva, _timer);
-        ITween rotar = new Rotar((valorNuevo) => transform.rotation = valorNuevo, _rotacion, transform.rotation, _rotacionFinal, _curva, _timer);
-
-        IAdministrarTweens administrador = new TweenConcurrentes();
-        administrador.AgregarTween(transladar);
-        administrador.AgregarTween(rotar);
+        IAdministrarTweens administrador = new TweenConcurrentes()
+            .AgregarTween(new Transladar(ActualizarPosicion, _camino, transform.position, _posicionFinal, _curva, _timer))
+            .AgregarTween(new Rotar(ActualizarRotacion, _rotacion, transform.rotation, _rotacionFinal, _curva, _timer));
 
         await administrador.DoTween();
+    }
+
+    private void ActualizarPosicion(Vector3 valorNuevo)
+    {
+        transform.position = valorNuevo;
+    }
+
+    private void ActualizarRotacion(Quaternion rotacionNueva)
+    {
+        transform.rotation = rotacionNueva;
     }
 }

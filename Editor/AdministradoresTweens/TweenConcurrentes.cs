@@ -12,9 +12,10 @@ namespace ItIsNotOnlyMe.Tweening
             _tweens = tweens == null ? new List<ITween>() : tweens;
         }
 
-        public void AgregarTween(ITween tween)
+        public IAdministrarTweens AgregarTween(ITween tween)
         {
             _tweens.Add(tween);
+            return this;
         }
 
         public Task DoTween()
