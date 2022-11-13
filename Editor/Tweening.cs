@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 namespace ItIsNotOnlyMe.Tweening
 {
-
     public static class Tweening<TTipo>
     {
         public async static Task Tween(Action<TTipo> Actualizar, ICamino<TTipo> camino, TTipo inicio, TTipo final, ICurva curva, IReloj reloj)

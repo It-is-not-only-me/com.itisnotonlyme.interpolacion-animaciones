@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 public class MoverObjeto : MonoBehaviour
 {
-    [SerializeField] private Camino<Vector3> _camino;
-    [SerializeField] private Camino<Quaternion> _rotacion;
-    [SerializeField] private Curva _curva;
+    [SerializeField] private LineaRectaVector3SO _camino;
+    [SerializeField] private LineaRectaQuaternionSO _rotacion;
+    [SerializeField] private LinealSO _curva;
     [SerializeField] private float _tiempo = 1;
 
     [Space]
@@ -24,11 +24,13 @@ public class MoverObjeto : MonoBehaviour
         float deltaTiempo = Time.deltaTime;
         _timer = new Timer(_tiempo, deltaTiempo);
 
-        Task[] transiciones = new Task[2];
+        ITween transladar = new Transladar((valorNuevo) => transform.position = valorNuevo, _camino, transform.position, _posicionFinal, _curva, _timer);
+        ITween rotar = new Rotar((valorNuevo) => transform.rotation = valorNuevo, _rotacion, transform.rotation, _rotacionFinal, _curva, _timer);
 
-        transiciones[0] = Tweening<Vector3>.Tween((valorNuevo) => transform.position = valorNuevo, _camino, transform.position, _posicionFinal, _curva, _timer);
-        transiciones[1] = Tweening<Quaternion>.Tween((valorNuevo) => transform.rotation = valorNuevo, _rotacion, transform.rotation, _rotacionFinal, _curva, _timer);
+        IAdministrarTweens administrador = new TweenConcurrentes();
+        administrador.AgregarTween(transladar);
+        administrador.AgregarTween(rotar);
 
-        await Task.WhenAll(transiciones);
+        await administrador.DoTween();
     }
 }

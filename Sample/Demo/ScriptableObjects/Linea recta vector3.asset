@@ -11,4 +11,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7826df96df2a6be45b585bd89e00d13f, type: 3}
   m_Name: Linea recta vector3
-  m_EditorClassIdentifier: com.itisnotonlyme.tweening.Editor:ItIsNotOnlyMe.Tweening:LineaRectaVector3
+  m_EditorClassIdentifier: 
