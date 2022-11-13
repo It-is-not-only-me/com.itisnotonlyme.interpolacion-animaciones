@@ -7,9 +7,9 @@ namespace ItIsNotOnlyMe.Tweening
 {
 
     [CreateAssetMenu(fileName = "Linea", menuName = "Curvas/Lineal")]
-    public class Lineal : CurvaSO
+    public class LinealSO : ScriptableObject, ICurva
     {
-        public override float Interpolar(float valor)
+        public float Interpolar(float valor)
         {
             return valor;
         }

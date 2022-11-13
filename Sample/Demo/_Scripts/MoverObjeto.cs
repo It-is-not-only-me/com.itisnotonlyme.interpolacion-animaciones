@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 public class MoverObjeto : MonoBehaviour
 {
-    [SerializeField] private CaminoSO<Vector3> _camino;
-    [SerializeField] private CaminoSO<Quaternion> _rotacion;
-    [SerializeField] private CurvaSO _curva;
+    [SerializeField] private Camino<Vector3> _camino;
+    [SerializeField] private Camino<Quaternion> _rotacion;
+    [SerializeField] private Curva _curva;
     [SerializeField] private float _tiempo = 1;
 
     [Space]
