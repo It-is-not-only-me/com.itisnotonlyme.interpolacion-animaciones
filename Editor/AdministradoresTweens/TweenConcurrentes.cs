@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ItIsNotOnlyMe.Tweening
 {
-    public class TweenConcurrentes : IAdministrarTweens
+    public class TweenConcurrentes : AdministrarTweens
     {
         private List<ITween> _tweens;
 
@@ -12,13 +12,13 @@ namespace ItIsNotOnlyMe.Tweening
             _tweens = tweens == null ? new List<ITween>() : tweens;
         }
 
-        public IAdministrarTweens AgregarTween(ITween tween)
+        public override AdministrarTweens AgregarTween(ITween tween)
         {
             _tweens.Add(tween);
             return this;
         }
 
-        public Task DoTween()
+        public override async Task DoTween()
         {
             int cantidadTweens = _tweens.Count;
 
@@ -26,7 +26,9 @@ namespace ItIsNotOnlyMe.Tweening
             for (int i = 0; i < cantidadTweens; i++)
                 tareas[i] = _tweens[i].DoTween();
 
-            return Task.WhenAll(tareas);
+             await Task.WhenAll(tareas);
         }
+
+        public override void Clear() => _tweens.Clear();
     }
 }
