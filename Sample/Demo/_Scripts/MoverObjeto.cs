@@ -24,8 +24,8 @@ public class MoverObjeto : MonoBehaviour
         float deltaTiempo = Time.deltaTime;
         _timer = new Timer(_tiempo, deltaTiempo);
 
-        IAdministrarTweens administrador = new TweenConcurrentes()
-            .AgregarTween(new Transladar(ActualizarPosicion, _camino, transform.position, _posicionFinal, _curva, _timer))
+        AdministrarTweens administrador = new TweenConcurrentes()
+            .AgregarTween(new Transladar(ActualizarPosicion, transform.position, _posicionFinal, _curva, _timer, _camino))
             .AgregarTween(new Rotar(ActualizarRotacion, _rotacion, transform.rotation, _rotacionFinal, _curva, _timer));
 
         await administrador.DoTween();
