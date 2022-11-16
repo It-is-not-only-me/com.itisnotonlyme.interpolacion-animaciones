@@ -1,6 +1,6 @@
 {
     "name": "com.itisnotonlyme.tweening",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "displayName": "Tweening",
     "description": "Es una libreria que permite 'animar' objetos, con diferentes tipos de transicion y movimientos",
     "unity": "2020.3",
